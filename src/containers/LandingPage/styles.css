@@ -1,0 +1,16 @@
+.wrapper {
+  width: '1200';
+  margin: '100px auto 0 auto';
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.columnWrapper {
+  flex-grow: 1;
+  flex-basis: 600;
+}
+
+.input {
+  display: block;
+}

@@ -1,14 +1,18 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+/* eslint-disable class-methods-use-this */
+import React, { Component, Fragment } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
 
-import NavigationItem from '../NavigationItem';
-import classes from './style.css';
+class Index extends Component {
+  render() {
+    return (
+      <Fragment>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <Navbar.Brand href="#home">Broomy</Navbar.Brand>
+        </Navbar>
+      </Fragment>
+    );
+  }
+}
 
-export default (props) => (
-    <ul className={classes.Links}>
-        <NavigationItem link="/">Home which is same as Landing Page here</NavigationItem>
-        <NavigationItem link="/orders">If you wanna go to orders page</NavigationItem>
-        <NavigationItem link="/sign-in">If you wanna go to orders page</NavigationItem>
-    </ul>
-);
+export default Index;

@@ -19,6 +19,14 @@ export default {
   spreadthis: {
     typography: {
       useNextVarients: true
+    },
+    wrapper: {
+      height: '600px',
+      width: '1200',
+      margin: '0 auto'
+    },
+    menuButton: {
+      diplay: 'hidden'
     }
   }
 };

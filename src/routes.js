@@ -3,12 +3,17 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {
-  Router, Route as DefaultRoute, Switch, Redirect
-} from 'react-router-dom';
+// eslint-disable-next-line object-curly-newline
+import { Router, Route as DefaultRoute, Switch, Redirect } from 'react-router-dom';
+
 import history from './history';
-import SignInPage from './components/Screens/Auth/SignIn';
 import LandingPage from './containers/LandingPage';
+import AgentSignUp from './components/Screens/Auth/AgentSignUp';
+import AdminLogin from './components/Screens/Auth/AdminLogin';
+import CustomerDashboard from './views/Dashboard/CustomerDashboard';
+import Navbar from './components/Navigations/NavBar/index';
+import Signup from './components/Screens/Auth/Signup';
+import Profile from './components/Screens/Auth/Profile';
 
 // @desc  A function to check if user is authenticated. Check if token exists
 // @ex    const isAuth = isAuthenticated()
@@ -22,16 +27,7 @@ const isAuthenticated = () => true;
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <DefaultRoute
     {...rest}
-    render={(props) => (isAuthenticated() ? (
-        <Component {...props} />
-    ) : (
-        <Redirect
-          to={{
-            pathname: '/'
-          }}
-        />
-    ))
-    }
+    render={(props) => (isAuthenticated() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />)}
   />
 );
 
@@ -46,9 +42,14 @@ const Route = ({ component: Component, ensureNonAuth, ...rest }) => (
 
 export default () => (
   <Router history={history}>
+    <Navbar />
     <Switch>
       <Route ensureNonAuth exact path="/" component={LandingPage} />
-      <PrivateRoute path="/sign-in" component={SignInPage} />
+      <Route path="/signup" exact component={Signup} />
+      <Route path="/agent/signup" exact component={AgentSignUp} />
+      <Route path="/admin" exact component={AdminLogin} />
+      <Route path="/dashboard" exact component={CustomerDashboard} />
+      <Route path="/profile" exact component={Profile} />
       <Route component={() => <h4>404 !</h4>} />
     </Switch>
   </Router>
